@@ -12,18 +12,17 @@ import swal from 'sweetalert2';
 })
 export class ShipmentListComponent implements OnInit {
 
-  public shipments;
-  public currentItemsToShow;
-  public longitud: number;
-  public arrayPaginator = [0];
-  public pageSize;
-  public ship;
-  public statusList: any[] = [];
-  public statusName = 'Status';
-  private newStatus = ['Status'];
-  public deleteInput;
-  public customerStatus;
-  public statusCustomer = 'Customer Status';
+  public shipments; // data cargada del store
+  public currentItemsToShow; // itera los shipmenmts
+  public longitud: number; // longitud para el paginador
+  public arrayPaginator = [0]; // array con opciones para el paginador
+  public pageSize; // tamaño que muestra el paginador
+  public ship; // filtra los status
+  public statusList: any[] = []; // es el select de los status
+  public statusName = 'Status'; // el valor que se muestra en el select
+  public deleteInput; // limpia el search
+  public customerStatus; // las options del select customerStatus
+  public statusCustomer = 'Customer Status'; // valor que muestra el select;
 
   constructor(
     private store: Store<any>,
@@ -45,6 +44,9 @@ export class ShipmentListComponent implements OnInit {
     });
   }
 
+  /**
+   * this function handler the events to paginator;
+   */
   public onPageChange($event, ship = this.shipments) {
     this.pageSize = $event.pageSize;
     if (ship) {
@@ -55,6 +57,9 @@ export class ShipmentListComponent implements OnInit {
     }
   }
 
+  /**
+   * this function create the array fot paginator;
+   */
   private numPage() {
     this.arrayPaginator = [];
     if (this.longitud === 0) {
@@ -69,6 +74,9 @@ export class ShipmentListComponent implements OnInit {
     }
   }
 
+  /**
+   * this function handler the filter for words;
+   */
   public applyFilter(searchValue: string) {
     const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
     if (searchValue && this.shipments) {
@@ -87,7 +95,6 @@ export class ShipmentListComponent implements OnInit {
     }
     if (searchValue === '') {
       this.store.dispatch({ type: '[Data] Load data begin' });
-
     }
     this.numPage();
     this.statusName = 'Status';
@@ -95,17 +102,22 @@ export class ShipmentListComponent implements OnInit {
 
   }
 
+
+  /**
+   * this function populate the values for select filters;
+   */
   private populateFilters() {
+    const statusFilter = ['Status'];
     const customerStatus = ['Customer Status'];
     if (this.shipments) {
       this.shipments.forEach(element => {
         customerStatus.push(element.customerStatus);
         element.trackingDetails.forEach(data => {
-          this.newStatus.push(data.status);
+          statusFilter.push(data.status);
         });
       });
     }
-    const newStatus = new Set(this.newStatus);
+    const newStatus = new Set(statusFilter);
     const uniqueStatus = Array.from(newStatus);
     this.statusList = uniqueStatus;
     const customerStatusSet = new Set(customerStatus);
@@ -113,6 +125,10 @@ export class ShipmentListComponent implements OnInit {
     this.customerStatus = uniqueCustumerStatus;
   }
 
+
+  /**
+   * this function handler the the filter for status;
+   */
   public filterStatus() {
     this.statusCustomer = 'Customer Status';
     const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
@@ -130,7 +146,9 @@ export class ShipmentListComponent implements OnInit {
     }
   }
 
-
+  /**
+   * this function handler the filter for the customerStatus;
+   */
   public customerFilter() {
     this.statusName = 'Status';
     const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
@@ -149,6 +167,9 @@ export class ShipmentListComponent implements OnInit {
 
   }
 
+  /**
+   * this function open the modal;
+   */
   public editShipment(shipment: any): void {
     const dialogRef = this.dialog.open(ShipmentDialogComponent, {
       width: '1200px',

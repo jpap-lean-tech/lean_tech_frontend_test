@@ -4,7 +4,9 @@ import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { ShipmentService } from '../services/shipment.service';
 
-
+/**
+ * this effects handler the load for the store;
+ */
 
 @Injectable()
 export class ShipmentEffects {

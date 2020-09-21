@@ -18,7 +18,9 @@ export class ShipmentFilterComponent implements OnChanges {
   @Output() changed = new EventEmitter<string>();
   constructor() { }
 
-
+  /**
+   * Detect changes and clean to search
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (this.deleteInput) {
       this.filter = '';

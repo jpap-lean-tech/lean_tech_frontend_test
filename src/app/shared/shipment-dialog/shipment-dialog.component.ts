@@ -38,21 +38,21 @@ export class ShipmentDialogComponent implements OnInit {
   ngOnInit() {
     this.editForm();
   }
-
+  /**
+   * this function close the dialog;
+   */
   public onNoClick(): void {
     this.dialogRef.close();
   }
   /**
    * this function brings the data about each shipment, through his id, and fill the form;
    */
-
   editForm() {
     this.store.subscribe(data => {
       if (data.shipment) {
         this.shipment = data.shipment.find(res => {
           return res.shipmentId === this.data.shipmentId;
         });
-
       }
       if (this.shipment) {
         const comments = this.shipment.shipper.comments ? this.shipment.shipper.comments : '';
@@ -78,8 +78,6 @@ export class ShipmentDialogComponent implements OnInit {
           comments: [comments]
         });
       }
-
-
     });
   }
 
@@ -91,6 +89,9 @@ export class ShipmentDialogComponent implements OnInit {
     this.onNoClick();
   }
 
+  /**
+   * this function handler the line for the titles in form;
+   */
   handlerSvg(index) {
     switch (index) {
       case 1:

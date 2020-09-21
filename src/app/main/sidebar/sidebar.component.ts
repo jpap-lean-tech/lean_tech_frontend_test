@@ -11,7 +11,9 @@ export class SidebarComponent implements OnChanges {
   showSidebar;
 
   constructor() { }
-
+  /**
+   * detect the changes for open o close sidebar
+   */
   ngOnChanges(changes: SimpleChanges): void {
     this.showSidebar = this.animationLeft;
   }

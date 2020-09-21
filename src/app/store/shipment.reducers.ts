@@ -2,7 +2,9 @@ import * as shipmentActions from './shipment.actions';
 
 export let initialState: any = {};
 
-
+/**
+ * here I handler the logic for the ngrx his name are reducers;
+ */
 export function shipmentReducer(state = initialState, action: shipmentActions.ActionsUnion) {
 
   switch (action.type) {

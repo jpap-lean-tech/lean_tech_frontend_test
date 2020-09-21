@@ -24,7 +24,6 @@ export class ShipmentCardComponent implements OnInit {
   /*
   this function create the date for show in template
   */
-
   private createDate() {
     const dateString = this.shipment.createdDate;
     const splitDate = dateString.split('/');
@@ -34,7 +33,6 @@ export class ShipmentCardComponent implements OnInit {
   /*
   * this function validate the customer rate
   */
-
   private validateCustomer() {
     if (this.shipment.uplift) {
       const uplift = parseFloat(this.shipment.uplift.value) / 100;

@@ -15,6 +15,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * this function handler the events to paginator;
+   */
   public showSidebar() {
     this.Sidebar = !this.Sidebar;
     this.hiddenSidebar.emit(this.Sidebar);

@@ -12,7 +12,9 @@ export class ShipmentService {
 
   constructor(private http: HttpClient) { }
 
-
+  /**
+   *  get data for the url is one service
+   */
   public getShipmentList(): Observable<ShipmentModel[]> {
     return this.http.get<ShipmentModel[]>(url);
 
