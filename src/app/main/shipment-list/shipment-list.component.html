@@ -1,3 +1,6 @@
-<div class="body-animation" *ngFor="let shipment of shipments">
+<div class="body-animation" *ngFor="let shipment of currentItemsToShow">
   <app-shipment-card [shipment]="shipment"></app-shipment-card>
 </div>
+<mat-paginator (page)="onPageChange($event, ship)" [length]="longitud" [pageSize]="pageSize"
+  [pageSizeOptions]="arrayPaginator">
+</mat-paginator>

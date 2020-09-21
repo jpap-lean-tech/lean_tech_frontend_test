@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 // Ngrx -- Store
 import { StoreModule } from '@ngrx/store';
@@ -48,7 +50,8 @@ import { ShipmentEffects } from './store/shipment.effects';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
