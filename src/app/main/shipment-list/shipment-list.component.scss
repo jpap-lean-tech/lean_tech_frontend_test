@@ -1,0 +1,41 @@
+.body-animation{
+  width: 100%;
+  }
+  
+  .row-search{
+    width: 100%;
+    display: flex;
+    margin-left: 23px;
+  }
+  
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  
+  ::ng-deep .mat-form-field-infix {
+    width: 100px !important;
+    top: 10px !important;
+    position: initial !important;
+  }
+  
+  .app-shipment-card:hover {
+    cursor: pointer;
+  }
+  
+  
+  @media only screen and (min-width: 360px){
+    .filter-status{
+      margin-left: 0px;
+    }
+   
+  }
+  
+  @media only screen and (min-width: 1200px){
+    .filter-status{
+      margin-left: 50px;
+    }
+   
+  }
+  
+  
+

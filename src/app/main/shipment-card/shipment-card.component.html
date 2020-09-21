@@ -1,0 +1,84 @@
+<div class="body-card">
+  <div class="header-card">
+    <div class="id-color">{{shipment.shipmentId}}</div>
+    <div class="date">
+      {{date | date}}
+      <mat-icon>more_vert</mat-icon>
+    </div>
+  </div>
+  <div class="container">
+    <div class="location-info">
+      <div>
+        <h3>
+          {{shipment.origin.city}}
+        </h3>
+        <h6>
+          feb 15 2020
+        </h6>
+      </div>
+      <div class="arrow-icon">
+        <mat-icon>arrow_forward
+        </mat-icon>
+      </div>
+      <div>
+        <h3>
+          {{shipment.destination.city}}
+        </h3>
+        <h6>
+          feb 19 2020
+        </h6>
+      </div>
+      <div>
+      </div>
+
+      <div *ngFor="let track of shipment.trackingDetails">
+        <h4>
+          {{track.status}}
+        </h4>
+        <div class="icon-location">
+          <mat-icon class="icon-place" fontSet="material-icons-outlined">room</mat-icon>
+          <h5>
+            {{track.location}}
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="reference-carrier">
+      <div class="references-company">
+        <div class="references">
+          <div *ngFor="let ref of shipment.references">
+            {{ref.name | slice:0:2}} <span class="change-weight">{{ref.value}}</span>
+          </div>
+        </div>
+        <div class="info-company">
+          <ng-container *ngIf="shipment">
+            <img [src]="shipment.carrier.logoUrl" appImgFallback alt="">
+            <h4>{{ shipment.companyName}}</h4>
+          </ng-container>
+        </div>
+      </div>
+      <div>
+        <div class="info-carrier-small-screen">
+          <div class="carrier">RE</div>
+          <div class="customer">RF</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-carrier">
+      <div class="carrier">
+        <h6>Status Carrier</h6>
+        <h4>Ready to Extract</h4>
+        <h3>$ {{carrierRate}}</h3>
+        <h6>Carrier Rate</h6>
+      </div>
+      <div class="customer">
+        <h6>Status Customer</h6>
+        <h4>Extraxt Error</h4>
+        <h3 *ngIf="customerRate === customerValidate ">${{ customerRate | number}}</h3>
+        <h3 *ngIf="customerRate !== customerValidate ">Error</h3>
+        <h6>Customer Rate</h6>
+      </div>
+    </div>
+
+  </div>
+</div>

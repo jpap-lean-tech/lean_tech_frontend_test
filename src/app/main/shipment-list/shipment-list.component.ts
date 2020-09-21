@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 })
 export class ShipmentListComponent implements OnInit {
 
+  public shipments;
   constructor(
     private store: Store<any>
   ) { }
@@ -15,9 +16,11 @@ export class ShipmentListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch({ type: '[Data] Load data begin' });
     this.store.subscribe(data => {
-      console.log(data);
+      if (data.shipment) {
+        this.shipments = data.shipment;
+      }
     });
-
   }
+
 
 }
