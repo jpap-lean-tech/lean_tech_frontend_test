@@ -11,6 +11,8 @@ import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { ShipmentListComponent } from './main/shipment-list/shipment-list.component';
 import { ShipmentCardComponent } from './main/shipment-card/shipment-card.component';
 import { ShipmentFilterComponent } from './main/shipment-filter/shipment-filter.component';
+import { ShipmentDialogComponent } from './shared/shipment-dialog/shipment-dialog.component';
+import { RatesShipmentComponent } from './shared/rates-shipment/rates-shipment.component';
 
 // Modules
 import { MatIconModule, MatToolbarModule, MatDialogModule, MatPaginatorModule } from '@angular/material';
@@ -29,6 +31,7 @@ import { ShipmentEffects } from './store/shipment.effects';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +41,8 @@ import { ShipmentEffects } from './store/shipment.effects';
     ShipmentListComponent,
     ShipmentCardComponent,
     ShipmentFilterComponent,
+    ShipmentDialogComponent,
+    RatesShipmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,7 @@ import { ShipmentEffects } from './store/shipment.effects';
     BrowserAnimationsModule
   ],
   providers: [],
+  entryComponents: [ShipmentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

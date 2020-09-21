@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
+import { ShipmentDialogComponent } from 'src/app/shared/shipment-dialog/shipment-dialog.component';
 import swal from 'sweetalert2';
 
 
@@ -24,7 +26,9 @@ export class ShipmentListComponent implements OnInit {
   public statusCustomer = 'Customer Status';
 
   constructor(
-    private store: Store<any>
+    private store: Store<any>,
+    public dialog: MatDialog
+
   ) { }
 
   ngOnInit() {
@@ -130,7 +134,6 @@ export class ShipmentListComponent implements OnInit {
   public customerFilter() {
     this.statusName = 'Status';
     const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
-    console.log(this.statusCustomer);
     if (this.statusCustomer !== 'Customer Status') {
       this.ship = this.shipments.filter(data => data.customerStatus === this.statusCustomer);
       this.onPageChange(event, this.ship);
@@ -144,6 +147,17 @@ export class ShipmentListComponent implements OnInit {
       this.numPage();
     }
 
+  }
+
+  public editShipment(shipment: any): void {
+    const dialogRef = this.dialog.open(ShipmentDialogComponent, {
+      width: '1200px',
+      height: '500px',
+      data: {
+        shipmentId: shipment.shipmentId
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => { });
   }
 
 }

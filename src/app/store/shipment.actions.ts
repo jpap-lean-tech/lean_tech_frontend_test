@@ -5,8 +5,6 @@ export enum ActionTypes {
   LoadDataBegin = '[Data] Load data begin',
   LoadDataSuccess = '[Data] Load data success',
   EDIT = '[Data] update data',
-  FilterStatus = '[Data] filter data'
-
 }
 
 export class LoadDataBegin implements Action {
@@ -19,6 +17,12 @@ export class LoadDataSuccess implements Action {
   constructor(public payload: { payload: ShipmentModel[] }) { }
 }
 
+export class EDIT implements Action {
+  readonly type = ActionTypes.EDIT;
+
+  constructor(public payload: { form: any, id: any }) { }
+}
 
 
-export type ActionsUnion = LoadDataBegin | LoadDataSuccess;
+
+export type ActionsUnion = LoadDataBegin | LoadDataSuccess | EDIT;

@@ -1,0 +1,51 @@
+.rates-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  .icon-title{
+    display: flex;
+    align-items: center;
+  }
+}
+
+.info-rate {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  div {
+    text-align: center;
+    h5{
+      font-weight: 400;
+    }
+  }
+}
+
+.rate-total{
+  display: flex;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-right: 40px;
+    flex-wrap: wrap;
+  }
+  h5{
+    font-weight: 400;
+    margin-left: 20px;
+  }
+}
+
+.button-box{
+  background: rgb(35, 59, 84);
+  color: white;
+  height: 40px;
+  padding: 0px 10px;
+  border-radius: 20px;
+}
+
+.rotate-icon{
+  transform: rotate(90deg);
+}

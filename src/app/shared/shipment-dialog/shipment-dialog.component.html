@@ -1,0 +1,183 @@
+<div class="icon-close">
+  <mat-icon (click)="onNoClick()">close</mat-icon>
+</div>
+<div mat-dialog-content class="dialog">
+  <h2>shimpment Information</h2>
+  <div class="second-title">
+    <div class="circle">
+      <mat-icon class="size-truck" fontSet="material-icons-outlined">
+        local_shipping
+      </mat-icon>
+    </div>
+    <div>
+      <h3>Shipment Information</h3>
+      <p>View and update all shipment data, generate pickup requests and changes shipmnt status</p>
+    </div>
+  </div>
+  <div class="row-actions">
+    <div>
+      <h2>Actions</h2>
+      <p>Change shipment status and save</p>
+      <div class="pickup-rated">
+        <div class="pickup">
+          <h3>Pickup Request</h3>
+          <mat-icon>arrow_drop_down
+          </mat-icon>
+        </div>
+        <div class="rated">
+          <h3>Rated</h3>
+          <mat-icon>arrow_drop_down
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Shipment Tags</h2>
+      <p>Set smart tags for shipments and make them searcheable</p>
+      <div class="search">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Add Tag" autofocus="false" [(ngModel)]="tag" (keyup.enter)="addTag(tag)">
+      </div>
+      <ul>
+        <li *ngFor="let tag of tags">
+          <span>{{tag}}</span>
+          <mat-icon (click)="removeTag(tag)">close</mat-icon>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+
+    <div class="actions">
+      <div>
+        <h3>More Actions</h3>
+        <h4>Print BOL, Invoices, labels requote and more </h4>
+      </div>
+      <ul class="actions-ul">
+        <li *ngFor="let action of actions">
+          <mat-icon>{{action.icon}}</mat-icon>
+          {{action.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-and-form">
+    <div class="general-info">
+      <span class="icon-info">
+        <mat-icon fontSet="material-icons-outlined">info</mat-icon>
+        <h3>General Info</h3>
+      </span>
+      <div class="info-shipment">
+        <span class="separation-bottom">
+          <h4 class="h4-font-weight">Shipment ID:</h4>
+          <h4>6564/Rated</h4>
+        </span>
+        <span class="separation-bottom">
+          <h4 class="h4-font-weight">Create by:</h4>
+          <h4>traineee7@leantech.com</h4>
+        </span>
+        <span class="separation-bottom">
+          <h4 class="h4-font-weight">Create date:</h4>
+          <h4>Mar 22, 2020 8:42 AM</h4>
+        </span>
+        <span class="separation-bottom-without">
+          <h4 class="h4-font-weight">account:</h4>
+          <h4>Trainig</h4>
+        </span>
+        <span class="separation-bottom">
+          <h4 class="h4-font-weight">SubAccount:</h4>
+          <div class="customer">
+            <h4>Customer1</h4>
+            <mat-icon>arrow_drop_down</mat-icon>
+          </div>
+        </span>
+        <span class="separation-bottom">
+          <h4 class="h4-font-weight">Location:</h4>
+          <div class="customer">
+            <h4>Customer1</h4>
+            <mat-icon>arrow_drop_down</mat-icon>
+          </div>
+        </span>
+      </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-box">
+        <div class="title-form">
+          <h2 (click)="handlerSvg(1)">Shipper</h2>
+          <h2 (click)="handlerSvg(2)">Consignee</h2>
+          <h2 (click)="handlerSvg(3)">Bill To</h2>
+        </div>
+        <svg width="680" height="10">
+          <line x1="0" y1="0" x2="680" y2="0" style="stroke:#979797;stroke-width:1" />
+          <line [attr.x1]="startLine" [attr.x2]="endLine" y2="0" style="stroke:#233B54;stroke-width:5" />
+        </svg>
+        <div class="form-styles">
+          <div class="column-form">
+            <label>
+              Company Name:
+              <input matInput type="text" formControlName="companyName">
+            </label>
+            <label>
+              Address
+              <input type="text" formControlName="address">
+            </label>
+            <label>
+              Address2
+              <input type="text" formControlName="addressTwo">
+            </label>
+            <label>
+              zipCode:
+              <input type="text" formControlName="zipCode">
+            </label>
+            <label>
+              city:
+              <input type="text" formControlName="city">
+            </label>
+            <label>
+              State:
+              <input type="text" formControlName="state">
+            </label>
+            <div class="box-comments">
+              <label>
+                Comments:
+              </label>
+              <textarea class="comments" formControlName="comments"></textarea>
+            </div>
+
+          </div>
+          <div class="column-form">
+            <label>
+              Country:
+              <input type="text" formControlName="country" required>
+            </label>
+            <label>
+              contact:
+              <input type="text" formControlName="contact" required>
+            </label>
+            <label>
+              Phone:
+              <input type="text" formControlName="zipCode" required>
+            </label>
+            <label>
+              Fax:
+              <input type="text" formControlName="fax" required>
+            </label>
+            <label>
+              Email:
+              <input type="text" formControlName="email" required>
+            </label>
+            <label>
+              Location:
+              <input type="text" formControlName="location" required>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="save-btn">
+        <button class="button-box">Save</button>
+      </div>
+
+    </form>
+
+  </div>
+  <app-rates-shipment></app-rates-shipment>

@@ -11,6 +11,17 @@ export function shipmentReducer(state = initialState, action: shipmentActions.Ac
     }
     case shipmentActions.ActionTypes.LoadDataSuccess:
       return action.payload;
+    case shipmentActions.ActionTypes.EDIT:
+      const shipment = state.find(element => element.shipmentId === action.payload.id);
+      const updateShipment = { ...shipment };
+      updateShipment.shipper = action.payload.form;
+      const updateState = [...state];
+      updateState.forEach((data, i) => {
+        if (data.shipmentId === action.payload.id) {
+          updateState[i] = updateShipment;
+        }
+      });
+      return updateState;
     default:
       return state;
 

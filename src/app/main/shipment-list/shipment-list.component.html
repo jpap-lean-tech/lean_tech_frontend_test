@@ -20,7 +20,7 @@
   </div>
 </div>
 <div class="body-animation" *ngFor="let shipment of currentItemsToShow">
-  <app-shipment-card [shipment]="shipment"></app-shipment-card>
+  <app-shipment-card [shipment]="shipment" (click)="editShipment(shipment)"></app-shipment-card>
 </div>
 <mat-paginator *ngIf="longitud !== 0" (page)="onPageChange($event, ship)" [length]="longitud" [pageSize]="pageSize"
   [pageSizeOptions]="arrayPaginator">
