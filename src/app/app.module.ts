@@ -10,13 +10,15 @@ import { HeaderComponent } from './main/header/header.component';
 
 // Modules
 import { MatIconModule, MatToolbarModule, MatDialogModule, MatPaginatorModule } from '@angular/material';
+import { SidebarComponent } from './main/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

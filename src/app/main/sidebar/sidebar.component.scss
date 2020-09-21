@@ -1,0 +1,91 @@
+@import '"~src/sass/variables';
+@import '~src/sass/mixins';
+
+.sidebar{
+  display: flex;
+  width: 300px;
+  height: auto;
+  @include white-box;
+  color:$black-0;
+  & ul {
+    list-style-type: none;
+    height: 57px;
+    width: 90%;
+    padding: 0;
+    color: $black-0;
+    margin-left: 20px;
+    & li {
+      display: flex;
+      align-items: center;
+      h2 {
+        font-weight: 300;
+        margin-left: 20px;
+      }
+      &:hover{
+        background:$white-1;
+        font-weight: 700;
+        border-radius: 0px 100px 100px 0px;
+        cursor: pointer;
+        h2{
+          font-weight: 900;
+          color:$blue-0;
+
+        }
+        }
+
+      }
+    } 
+  }
+
+
+  @media (max-width: 360px) {
+    .sidebar {
+      display: none;
+    }
+  }
+  
+  
+  @media (max-width: 600px) {
+    .sidebar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .sidebar {
+     width: 200px;
+    }
+  }
+
+
+  .animation-sidebar {
+    animation: slidein 0.5s;
+    //animation-duration: 5s;
+    //animation-name: slidein;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 0px;
+    }
+    to {
+      margin-left: -310px;
+    }
+  }
+
+  .animation-start{
+    animation-duration: 0.5s;
+    animation-name: revereSlidein;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes revereSlidein {
+    from {
+      margin-left: -310px;
+    }
+  
+    to {
+      margin-left: 0px;
+    }
+  }
