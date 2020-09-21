@@ -15,6 +15,14 @@ export class ShipmentListComponent implements OnInit {
   public longitud: number;
   public arrayPaginator = [0];
   public pageSize;
+  public ship;
+  public statusList: any[] = [];
+  public statusName = 'Status';
+  private newStatus = ['Status'];
+  public deleteInput;
+  public customerStatus;
+  public statusCustomer = 'Customer Status';
+
   constructor(
     private store: Store<any>
   ) { }
@@ -28,7 +36,7 @@ export class ShipmentListComponent implements OnInit {
         const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
         this.onPageChange(event, this.shipments);
         this.numPage();
-
+        this.populateFilters();
       }
     });
   }
@@ -45,6 +53,9 @@ export class ShipmentListComponent implements OnInit {
 
   private numPage() {
     this.arrayPaginator = [];
+    if (this.longitud === 0) {
+      swal.fire('Nothing', 'no shipment with this filters', 'error');
+    }
     if (this.longitud < 3) {
       this.pageSize = this.longitud;
       this.arrayPaginator = [this.longitud];
@@ -54,5 +65,85 @@ export class ShipmentListComponent implements OnInit {
     }
   }
 
+  public applyFilter(searchValue: string) {
+    const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
+    if (searchValue && this.shipments) {
+      const ship = this.shipments.filter(
+        data => {
+          return data.companyName === searchValue ||
+            data.origin.city === searchValue ||
+            data.destination.city === searchValue ||
+            data.trackingDetails[0].status === searchValue;
+        });
+      if (ship.length > 0) {
+        this.ship = ship;
+        this.onPageChange(event, ship);
+        this.shipments = ship;
+      }
+    }
+    if (searchValue === '') {
+      this.store.dispatch({ type: '[Data] Load data begin' });
+
+    }
+    this.numPage();
+    this.statusName = 'Status';
+    this.statusCustomer = 'Customer Status';
+
+  }
+
+  private populateFilters() {
+    const customerStatus = ['Customer Status'];
+    if (this.shipments) {
+      this.shipments.forEach(element => {
+        customerStatus.push(element.customerStatus);
+        element.trackingDetails.forEach(data => {
+          this.newStatus.push(data.status);
+        });
+      });
+    }
+    const newStatus = new Set(this.newStatus);
+    const uniqueStatus = Array.from(newStatus);
+    this.statusList = uniqueStatus;
+    const customerStatusSet = new Set(customerStatus);
+    const uniqueCustumerStatus = Array.from(customerStatusSet);
+    this.customerStatus = uniqueCustumerStatus;
+  }
+
+  public filterStatus() {
+    this.statusCustomer = 'Customer Status';
+    const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
+    if (this.statusName !== 'Status') {
+      this.ship = this.shipments.filter(data => data.trackingDetails[0].status === this.statusName);
+      this.onPageChange(event, this.ship);
+      this.deleteInput = false;
+      this.numPage();
+    } else {
+      this.ship = this.shipments;
+      this.onPageChange(event, this.ship);
+      this.deleteInput = true;
+      this.store.dispatch({ type: '[Data] Load data begin' });
+      this.numPage();
+    }
+  }
+
+
+  public customerFilter() {
+    this.statusName = 'Status';
+    const event = { previousPageIndex: 0, pageIndex: 0, pageSize: 3, length: 20 };
+    console.log(this.statusCustomer);
+    if (this.statusCustomer !== 'Customer Status') {
+      this.ship = this.shipments.filter(data => data.customerStatus === this.statusCustomer);
+      this.onPageChange(event, this.ship);
+      this.deleteInput = false;
+      this.numPage();
+    } else {
+      this.ship = this.shipments;
+      this.onPageChange(event, this.ship);
+      this.deleteInput = true;
+      this.store.dispatch({ type: '[Data] Load data begin' });
+      this.numPage();
+    }
+
+  }
 
 }

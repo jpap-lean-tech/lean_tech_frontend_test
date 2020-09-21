@@ -1,6 +1,27 @@
+<div class="row-search">
+  <app-shipment-filter (changed)="applyFilter($event)" [deleteInput]="deleteInput"></app-shipment-filter>
+  <div class="filter-status">
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="statusName" (ngModelChange)="filterStatus()">
+        <mat-option *ngFor="let status of statusList" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="filter-customer">
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="statusCustomer" (ngModelChange)="customerFilter()">
+        <mat-option *ngFor="let status of customerStatus" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
 <div class="body-animation" *ngFor="let shipment of currentItemsToShow">
   <app-shipment-card [shipment]="shipment"></app-shipment-card>
 </div>
-<mat-paginator (page)="onPageChange($event, ship)" [length]="longitud" [pageSize]="pageSize"
+<mat-paginator *ngIf="longitud !== 0" (page)="onPageChange($event, ship)" [length]="longitud" [pageSize]="pageSize"
   [pageSizeOptions]="arrayPaginator">
 </mat-paginator>
