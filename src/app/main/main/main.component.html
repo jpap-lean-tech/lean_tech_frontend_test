@@ -1,4 +1,8 @@
 <app-header (hiddenSidebar)="showSidebar = $event"></app-header>
 <div class="container">
   <app-sidebar [animationLeft]="showSidebar"></app-sidebar>
+  <div class="padding-container">
+    <h2>Shipment List</h2>
+    <app-shipment-list></app-shipment-list>
+  </div>
 </div>

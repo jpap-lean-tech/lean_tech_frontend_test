@@ -1,0 +1,30 @@
+.container{
+  display: flex;
+  app-shipment-list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .padding-container{
+    padding-left: 80px;
+    padding-top:50px ;
+  }
+  .hidden-sidebar{
+    //display: none;
+  }
+  app-sidebar{
+    display: flex;
+    justify-content: initial;
+  }
+  h2{
+    margin-left: 23px;
+  }
+}
+
+@media only screen and (max-width: 1000px){
+  .container{
+    .padding-container{
+      padding-left:0px ;
+    }
+  }
+}
